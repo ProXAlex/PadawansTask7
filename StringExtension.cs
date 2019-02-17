@@ -8,7 +8,16 @@ namespace PadawansTask7
         {
             if(array == null)
                 throw new ArgumentNullException("Agrument cannot be null");
-           Array.Sort(array, Comparison);
+            try
+            {
+                Array.Sort(array, Comparison);
+            }
+            catch (Exception e)
+            {
+                if(e.InnerException != null && e.InnerException.GetType() == typeof(ArgumentNullException))
+                     throw new ArgumentNullException("Agrument cannot be null");
+            }
+           
         }
 
         private static int Comparison(string x, string y)
